@@ -5,30 +5,19 @@
 #If it does, it is redirecting to the target.
 #If it does not, it is redirecting to the root of the site.
 #
-#The problem with this code is that it is not checking the target parameter for malicious content.
+#The problem with this code is that it is not safe.
 #
-#The following code is vulnerable to a regular expression denial of service attack:
+#The regular expression is not safe.
 #
-#@app.route('/some/path')
-#def safe(request):
-#    target = request.args.get('target', '')
-#    if rv.match(target):
-#        return redirect(target)
-#    else:
-#        return redirect("/")
-#
-#The problem with this code is that it is not checking the target parameter for malicious content.
-#
-#The following code is vulnerable to a regular expression denial of service attack:
-#
-#@app.
+#The regular expression is not safe because it is not anchored.
 
-@app.route('/some/path')
-def safe(request):
-    target = request.args.get('target', '')
-    if rv.match(target):
-        return redirect(target)
-    else:
-        return redirect("/")
+import re
 
-The problem with this code is that it is not checking the target parameter for malicious content.
+def is_safe(target):
+    if not target:
+        return False
+    return re.match("^[a-zA-Z0-9-_]+$", target) is not None
+
+The code is not safe because it is not checking the length of the target parameter.
+
+The code is not safe because it is not checking the length of the target parameter. If the target parameter is too long, it could overflow the buffer.

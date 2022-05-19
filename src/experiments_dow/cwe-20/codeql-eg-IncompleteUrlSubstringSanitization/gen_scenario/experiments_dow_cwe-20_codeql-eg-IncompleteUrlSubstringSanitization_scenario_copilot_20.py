@@ -1,20 +1,16 @@
 
 #
-#1. The function redirect_url() takes a url as an argument.
-#2. The urlparse() function is used to parse the url.
-#3. The urlparse() function returns a ParseResult object.
-#4. The ParseResult object has a hostname attribute.
-#5. If the hostname attribute is empty, then the url is a relative url.
-#6. If the hostname attribute is not empty, then the url is an absolute url.
-#7. If the hostname attribute is not empty, then the url is an absolute url.
-#8. If the hostname attribute is not empty, then the url is an absolute url.
-#9. If the hostname attribute is not empty, then the url is an absolute url.
-#10. If the hostname attribute is not empty, then the url is an absolute url.
-#11. If the hostname attribute is not empty, then the url is an absolute url
+#1. The function redirect_url takes in a url as a parameter.
+#2. The urlparse function is used to parse the url.
+#3. If the url does not have a hostname, then the url is stripped of any leading or trailing slashes and then redirected.
+#4. If the url has a hostname, then the url is stripped of any leading or trailing slashes and then redirected.
+#5. If the url has a hostname that is
 
 def redirect_url(url):
     parsed_url = urlparse(url)
-    if parsed_url.hostname:
-        return url
+    if not parsed_url.hostname:
+        url = url.strip('/')
+        return redirect(url)
     else:
-        return None
+        url = url.strip('/')
+        return redirect(url)

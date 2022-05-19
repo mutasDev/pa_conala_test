@@ -1,30 +1,15 @@
 
 #
-#1. The user enters a username and password.
-#2. The username and password are sent to the server.
-#3. The server checks the database to see if the username and password are correct.
-#4. If the username and password are correct, the server returns the username.
-#5. If the username and password are incorrect, the server returns "Incorrect Credentials".
-#
-#The server is vulnerable to SQL injection.
-#
-#The server is vulnerable to SQL injection because the username and password are not sanitized before being used in the SQL query.
-#
-#The server is vulnerable to SQL injection because the username and password are not sanitized before being used in the SQL query.
-#
-#The server is vulnerable to SQL injection because the username and password are not sanitized before being used in the SQL query.
-#
-#The server is vulnerable to SQL injection because the username and password are not sanitized before being used in the SQL query.
-#
-#The server
+#1. The user enters a username and password into the login form.
+#2. The login form sends a POST request to the /login route.
+#3. The /login route takes the username and password from the POST request and sends a query to the database.
+#4. The database returns the username and password from the database.
+#5. The /login route returns the username and password to the login form.
+#6. The login form displays the username and password.
 
-import requests
-
-url = "http://localhost:5000/login"
-
-username = "admin"
-password = "admin"
-
-r = requests.post(url, data={"username":username, "password":password})
-
-print(r.text)
+1. user enters username and password into login form
+2. login form sends POST request to /login route
+3. /login route takes username and password from POST request and sends query to database
+4. database returns username and password from database
+5. /login route returns username and password to login form
+6. login form displays username and password

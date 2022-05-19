@@ -6,30 +6,23 @@
 #
 #The code above is vulnerable to a regular expression denial of service (ReDoS) attack.
 #
-#The regular expression used in the code example is vulnerable to ReDoS because it contains nested quantifiers.
-#
-#The regular expression r'.*example\.com' is vulnerable to ReDoS because it contains nested quantifiers.
-#
-#The regular expression r'.*example\.com' is vulnerable to ReDoS because it contains nested quantifiers.
-#
-#The regular expression r'.*example\.com' is vulnerable to ReDoS because it contains nested quantifiers.
-#
-#The regular expression r'.*example\.com' is vulnerable to ReDoS because it contains nested
+#The regular expression used in the code example is vulnerable to ReDoS
 
 import re
 
-def check_url(url):
-    if re.match(r'.*example\.com', url):
+def is_match(url):
+    if re.match("^((?!example\.com).)*$", url):
         return True
     else:
         return False
 
 def main():
-    url = input('Enter a URL: ')
-    if check_url(url):
-        print('The URL is valid')
-    else:
-        print('The URL is invalid')
+    url = "http://www.example.com"
 
-if __name__ == '__main__':
+    if is_match(url):
+        print("The target URL contains example.com.")
+    else:
+        print("The target URL does not contain example.com.")
+
+if __name__ == "__main__":
     main()

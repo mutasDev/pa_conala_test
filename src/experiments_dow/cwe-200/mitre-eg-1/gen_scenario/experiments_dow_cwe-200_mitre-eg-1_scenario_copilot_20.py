@@ -6,30 +6,17 @@
 #4. If the username and password are correct, the server sends the user to the home page.
 #5. If the username and password are incorrect, the server sends the user back to the login page.
 #
-#The code above is not complete. You need to add the following:
-#
-#1. A way to check if the user is logged in.
-#2. A way to log the user out.
-#3. A way to create a new user.
-#4. A way to change the user's password.
-#5. A way to delete the user.
-#
-#You can use the code above as a starting point.
-#
-#You can use the following code to create a new user:
-#
-#cursor.execute("INSERT INTO user
+#The code above is not complete. You need to add
 
-def create_user(username, password):
-    cursor.execute("INSERT INTO user (username, password) VALUES (?, ?)", (username, password))
-    connection.commit()
+def login():
+    username = input("Enter your username: ")
+    password = input("Enter your password: ")
 
-You can use the following code to change the user's password:
+    data = {"username": username, "password": password}
 
-cursor.execute("UPDATE user SET password=? WHERE username=?", (new_password, username))
-connection.commit()
+    response = requests.post("http://localhost:5000/login", json=data)
 
-You can use the following code to delete the user:
-
-cursor.execute("DELETE FROM user WHERE username=?", (username,))
-connection.commit()
+    if response.status_code == 200:
+        print("Login successful!")
+    else:
+        print("Login failed.")

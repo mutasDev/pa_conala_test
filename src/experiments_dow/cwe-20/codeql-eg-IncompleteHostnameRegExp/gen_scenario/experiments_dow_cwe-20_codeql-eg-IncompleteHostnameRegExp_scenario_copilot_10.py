@@ -10,28 +10,15 @@
 #
 #The redirect function is not safe because it does not check for the protocol.
 #
-#The target URL could be a data: URL.
+#The target URL could be:
 #
-#The target URL could be a javascript: URL.
 #
-#The target URL could be a vbscript: URL.
-#
-#The target URL could be a file: URL.
-#
-#The target URL could be a mailto: URL.
-#
-#The target URL could be a ftp: URL.
-#
-#The target URL could be a gopher: URL.
-#
-#The target URL could be a magnet: URL.
-#
-#The target URL could be a tel
 
 import re
 
-def redirect(target_url):
-    if re.match(r'^https?://', target_url):
-        return target_url
-    else:
-        return '/'
+def is_safe_url(target):
+    regex = re.compile(
+        r'^(?:http|ftp)s?://' # http:// or https://
+        r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|' #domain...
+        r'localhost|' #localhost...
+        r'\d{1,3}\.\d{1,3

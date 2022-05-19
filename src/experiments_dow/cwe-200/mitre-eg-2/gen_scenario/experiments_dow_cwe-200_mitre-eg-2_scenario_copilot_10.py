@@ -11,35 +11,20 @@
 #
 #The query should be using parameterized queries.
 #
-#The query should look like this:
-#
-#query = "SELECT * FROM `users` WHERE `username`=%s AND `password`=%s"
-#cursor.execute(query, (username, password))
-#
-#The query is now using parameterized queries.
-#
-#The query is now safe from SQL injection.
-#
-#The query is now safe from SQL injection because the username and password are being passed as parameters.
-#
-#The query is now safe from SQL injection because the
+#The
 
-import mysql.connector
+import MySQLdb
 
-mydb = mysql.connector.connect(
-  host="localhost",
-  user="root",
-  passwd="",
-  database="mydatabase"
-)
+# Connect to the database
+db = MySQLdb.connect(host="localhost", user="root", passwd="", db="test")
 
-mycursor = mydb.cursor()
+# Execute the query
+cursor = db.cursor()
+cursor.execute("SELECT * FROM users WHERE username='" + username + "' AND password='" + password + "'")
 
-sql = "SELECT * FROM `users` WHERE `username`=%s AND `password`=%s"
-val = (username, password)
-mycursor.execute(sql, val)
+# Fetch the results
+results = cursor.fetchall()
 
-myresult = mycursor.fetchall()
-
-for x in myresult:
-  print(x)
+# Print the results
+for row in results:
+    print row[0], row[1]
